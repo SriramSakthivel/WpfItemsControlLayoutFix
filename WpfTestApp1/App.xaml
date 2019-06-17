@@ -1,0 +1,31 @@
+﻿<Application x:Class="WpfTestApp1.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfTestApp1"
+             StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <DataTemplate DataType="{x:Type local:StagedDataViewModel}">
+      <ItemsControl ItemsSource="{Binding StagedData}" >
+        <ItemsControl.Template>
+          <ControlTemplate TargetType="ItemsControl">
+            <ScrollViewer x:Name="ScrollViewer" >
+              <ItemsPresenter/>
+            </ScrollViewer>
+          </ControlTemplate>
+        </ItemsControl.Template>
+        <ItemsControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Vertical"/>
+          </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+      </ItemsControl>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:OrderCollectionViewModel}">
+      <Expander Header="{Binding Header}">
+        <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True">
+        </DataGrid>
+      </Expander>
+    </DataTemplate>
+  </Application.Resources>
+</Application>
